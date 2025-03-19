@@ -4,12 +4,19 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  },
   "devDependencies": {
     "@nx/js": "20.6.1",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.97",
     "nx": "20.6.1",
     "tslib": "^2.3.0",
     "typescript": "~5.7.2"
