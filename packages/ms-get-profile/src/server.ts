@@ -14,13 +14,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-// Connecting to MongoDb
-mongoose
-    .connect(process.env.MONGO_URI || "mongodb://localhost:27017/profiles")
-    .then(() => console.log("Mongo successfully connected"))
-    .catch((err) => console.log(`An error occurred: ${err}`))
-
 // Using router
 
 app.use('/profile', profileRoutes)
