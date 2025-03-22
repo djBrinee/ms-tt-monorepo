@@ -50,7 +50,7 @@ app.get("/get-profile", async(req, res) => {
 
     const profile = await Profile.findOne({email}); 
     if(!profile) {
-        res.status(400).json({error: "User not found"});
+        res.status(404).json({error: "User not found"});
     }
 
     res.status(200).json(profile);
