@@ -23,6 +23,6 @@ mongoose
 // Using Profile routes
 app.use('/profile', profileRoutes)
 
-// Defining port
+// Defining port & starting server
 const port = process.env.PORT || 3002;
 app.listen(port, () => console.log("ms profile-crud is running on port 3002"));
