@@ -10,11 +10,11 @@ export interface IProfile extends Document {
 }
 
 const ProfileSchema: Schema =  new Schema({
-    name: {type: String, require: true},
-    lastName: {type: String, require: true},
-    phoneNo: {type: String, require: true},
-    email: {type: String, require: true, unique:true},
-    address: {type: String, require: true}
+    name: {type: String, required: true},
+    lastName: {type: String, required: true},
+    phoneNo: {type: String, required: true},
+    email: {type: String, required: true, unique:true},
+    address: {type: String, required: true}
 });
 
 export const ProfileModel: Model<IProfile> = mongoose.model<IProfile>("Profile", ProfileSchema)
