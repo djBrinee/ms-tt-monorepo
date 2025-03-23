@@ -4,7 +4,7 @@ import { getProfileFromCrudService } from "../services/crudService";
 const router = express.Router();
 
 
-// Get by email endpoint
+// GET endpoint by email
 router.get("/get", async (req: Request, res: Response): Promise<void> => {
     try {
         const { email } = req.query;
@@ -16,7 +16,7 @@ router.get("/get", async (req: Request, res: Response): Promise<void> => {
         res.status(200).json(profile);
 
     } catch (error) {
-        res.status(500).json({error: "Fail to retrieve profile"});
+        res.status(500).json({error: `Fail to retrieve profile`});
     }
 });
 

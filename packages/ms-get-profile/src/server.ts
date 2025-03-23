@@ -1,5 +1,4 @@
 import express from "express"
-import mongoose from "mongoose"
 import dotenv from "dotenv"
 import cors from "cors"
 import profileRoutes from './routes/profileRoutes'
@@ -7,7 +6,7 @@ import profileRoutes from './routes/profileRoutes'
 // Cleaner server file: just for middleware and set up
 
 dotenv.config();
-
+console.log(`API KEY:`, process.env.API_KEY)
 // initializing app
 
 const app = express();
