@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 // Connecting Mongo DB
 mongoose
     .connect(process.env.MONGO_URI || "mongo://localhost:27017/profiles")
