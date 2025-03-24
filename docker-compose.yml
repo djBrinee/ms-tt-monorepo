@@ -1,0 +1,33 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  ms-crud-profile:
+    build:
+      context: .
+      dockerfile: packages/ms-crud-profile/Dockerfile
+    container_name: ms-crud-profile
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./packages/ms-crud-profile/.env
+
+  ms-get-profile:
+    build:
+      context: .
+      dockerfile: packages/ms-get-profile/Dockerfile
+    container_name: ms-get-profile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - ms-crud-profile
+    env_file:
+      - ./packages/ms-get-profile/.env
+
+volumes:
+  mongo-data:

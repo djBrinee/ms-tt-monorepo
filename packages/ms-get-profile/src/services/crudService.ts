@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, {AxiosError} from "axios"
 import dotenv from 'dotenv'
 
 // Need to call env variables in this file
@@ -17,7 +17,20 @@ export const getProfileFromCrudService = async (email: string) => {
         })
         return response.data;
         
-    } catch (error: any) {
-        throw new Error("Cannot recieve from data profile");
+        
+    } catch (error: unknown) {
+        // Validating error
+        if (axios.isAxiosError(error)) {
+          const status = error.response?.status;
+    
+          if (status === 404) {
+            throw new Error("Profile not found");
+          }
+    
+          console.error("Axios error:", status, error.message);
+          throw new Error("Internal server error");
+        }
+    
+        throw new Error("Unexpected error occurred");
     }
-}
+};

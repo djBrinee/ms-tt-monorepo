@@ -13,10 +13,12 @@
     "@types/express": "^5.0.1",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/mongoose": "^5.11.97",
-    "@types/node": "^22.13.10"
+    "@types/node": "^22.13.10",
+    "@types/cors": "^2.8.17",
+    "typescript": "^5.7.3"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npx tsc --project tsconfig.json",
     "start": "npm run build && node dist/server.js",
     "dev": "tsx src/server.ts"
   }
