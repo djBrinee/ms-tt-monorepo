@@ -85,7 +85,6 @@ router.get("/get", async (req: Request, res: Response): Promise<void> => {
 
         res.status(200).json(profile);
     } catch (error) {
-        console.error("Error retrieving profile:", error);
         res.status(500).json({ error: "Cannot get profile" });
     }
 });
