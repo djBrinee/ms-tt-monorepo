@@ -1,0 +1,54 @@
+# ms crud-profile service + deployment
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-crud-profile
+  namespace: microservices-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-crud-profile
+  template:
+    metadata:
+      labels:
+        app: ms-crud-profile
+    spec:
+      containers:
+        - name: ms-crud-profile
+          image: ms-crud-profile:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3002
+          envFrom:
+            - secretRef:
+                name: ms-crud-env
+          env:
+            - name: BASIC_AUTH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: basic-auth-secret
+                  key: BASIC_AUTH_USER
+            - name: BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: basic-auth-secret
+                  key: BASIC_AUTH_PASS
+---
+
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-crud-profile
+  namespace: microservices-demo
+spec:
+  type: NodePort
+  selector:
+    app: ms-crud-profile
+  ports:
+    - port: 3002
+      targetPort: 3002
+      nodePort: 32002

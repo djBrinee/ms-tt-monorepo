@@ -1,0 +1,54 @@
+# ms get-profile service + deployment
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-get-profile
+  namespace: microservices-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-get-profile
+  template:
+    metadata:
+      labels:
+        app: ms-get-profile
+    spec:
+      containers:
+        - name: ms-get-profile
+          image: ms-get-profile:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - secretRef:
+                name: ms-get-env
+          env:
+            - name: BASIC_AUTH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: basic-auth-secret
+                  key: BASIC_AUTH_USER
+            - name: BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: basic-auth-secret
+                  key: BASIC_AUTH_PASS
+---
+
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-get-profile
+  namespace: microservices-demo
+spec:
+  type: NodePort
+  selector:
+    app: ms-get-profile
+  ports:
+    - port: 3001
+      targetPort: 3001
+      nodePort: 32001
