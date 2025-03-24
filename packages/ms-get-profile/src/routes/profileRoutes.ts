@@ -1,8 +1,11 @@
 import express, { Request, Response } from "express";
 import { getProfileFromCrudService } from "../services/crudService";
+import { basicAuth } from "../middleware/auth"
+
 
 const router = express.Router();
 
+router.use(basicAuth);
 
 // GET endpoint by email
 router.get("/get", async (req: Request, res: Response): Promise<void> => {
