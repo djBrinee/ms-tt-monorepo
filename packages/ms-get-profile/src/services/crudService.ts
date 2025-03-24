@@ -17,7 +17,7 @@ export const getProfileFromCrudService = async (email: string) => {
         const response = await axios.get(`${CRUD_SERVICE_URL}/profile/get`, {
             params : {email},
             headers : {"x-api-key": API_KEY, "Authorization" : `Basic ${authToken}`},
-        })
+        });
         return response.data;
         
         
@@ -29,11 +29,8 @@ export const getProfileFromCrudService = async (email: string) => {
           if (status === 404) {
             throw new Error("Profile not found");
           }
-    
-          console.error("Axios error:", status, error.message);
           throw new Error("Internal server error");
         }
-    
         throw new Error("Unexpected error occurred");
     }
 };

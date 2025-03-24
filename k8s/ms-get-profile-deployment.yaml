@@ -30,12 +30,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: basic-auth-secret
-                  key: BASIC_AUTH_USER
+                  key: BASIC_AUTH_USERNAME
             - name: BASIC_AUTH_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: basic-auth-secret
-                  key: BASIC_AUTH_PASS
+                  key: BASIC_AUTH_PASSWORD
 ---
 
 # Service
